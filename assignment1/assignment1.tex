@@ -1,0 +1,74 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[T1]{fontenc}
+
+\usepackage{amsmath,amssymb,amsfonts}
+
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows}
+\usepackage{tkz-graph}
+
+\usepackage{hyperref}
+
+\title{Advanced Algorithms\\Assignment 1}
+\author{Kristoffer Søholm \and Sebastian Paaske Tørholm}
+
+\begin{document}
+\maketitle
+
+\section{Exercise 1: $b$-flow}
+% We can express a $b$-flow problem as a max-flow problem. Let every vertex,
+% v, with positive demand get an edge from the source with capacity $b_v$, and
+% every vertex $v$ with negative demand get an edge to the sink with capacity
+% $-b_v$. If we in this network can get a maximum flow that maxes out all of both
+% the source and sink edges, we have a corresponding $b$-flow.
+% This, however, was not what we were asked about.
+
+Figure $1(a)$ does have a $b$-flow, as can be seen in \autoref{fig-a-bflow}.
+
+Figure $1(b)$ does not have one, since no flow can leave $v_4$, and thus it
+cannot satisfy the requirement of $b_4 = -2$.
+
+\begin{figure}[h!]
+    \centering
+    \begin{tikzpicture}[scale=1.75]
+        \tikzset{EdgeStyle/.style={->}}
+
+        \Vertex[x=0,y=3,L= 3,Math=true,LabelOut,Lpos=90]{D1}
+        \Vertex[x=2,y=3,L=-2,Math=true,LabelOut,Lpos=90]{D2}
+        \Vertex[x=0,y=1,L= 4,Math=true,LabelOut,Lpos=180]{D3}
+        \Vertex[x=2,y=1,L= 2,Math=true,LabelOut,Lpos=0]{D4}
+        \Vertex[x=1,y=0,L=-7,Math=true,LabelOut,Lpos=-90]{D5}
+
+        \Vertex[x=0,y=3,L=v_1,Math=true]{V1}
+        \Vertex[x=2,y=3,L=v_2,Math=true]{V2}
+        \Vertex[x=0,y=1,L=v_3,Math=true]{V3}
+        \Vertex[x=2,y=1,L=v_4,Math=true]{V4}
+        \Vertex[x=1,y=0,L=v_5,Math=true]{V5}
+
+        \Edge[label = $3/4$](V1)(V3)
+        \Edge[label = $0/1$, style={pos=.25}](V1)(V4)
+        \Edge[label = $0/5$](V2)(V1)
+        \Edge[label = $2/2$](V2)(V4)
+        \Edge[label = $0/4$, style={pos=.25}](V3)(V2)
+        \Edge[label = $0/3$](V3)(V4)
+        \Edge[label = $0/2$](V4)(V5)
+        \Edge[label = $1/7$](V5)(V3)
+
+        \tikzset{EdgeStyle/.append style = {bend left=75}}
+        \Edge[label = $0/3$, style={pos=.40}](V2)(V5)
+        \Edge[label = $6/6$, style={pos=.60}](V5)(V1)
+    \end{tikzpicture}
+    \caption{A $b$-flow for figure $1(a)$}
+    \label{fig-a-bflow}
+\end{figure}
+
+\section{Exercise 2: Minimum-cost flow}
+
+\section{Exercise 3: Rectilinear planar embedding}
+
+
+\end{document}
+
