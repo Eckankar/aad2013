@@ -104,6 +104,41 @@ the cost function, which is the same as maximizing the negative cost-function.
 
 \section{Exercise 3: Rectilinear planar embedding}
 
+\subsection{Exercise 3.1}
+% TODO: z_{fg} table
+
+% x_{vf} table
+\begin{tabular}{|l||l|l|l|l|l|l|l|}
+    \hline
+     & $v_1$ & $v_2$ & $v_3$ & $v_4$ & $v_5$ & $v_6$ & $v_7$ \\
+    \hline
+    \hline
+    $a$ & 0 & 0 & 1 &  0 &  1 & 1 & 0 \\
+    $b$ & 1 & 0 & 0 &  0 &  0 & 1 & 0 \\
+    $c$ & 1 & 1 & 1 &  0 &  0 & 0 & 0 \\
+    $d$ & 0 & 1 & 1 & -1 &  0 & 1 & 0 \\
+    $e$ & 0 & 0 & 1 &  1 & -1 & 1 & 0 \\
+    \hline
+\end{tabular}
+
+There are 13 break points in total:
+\begin{itemize}
+    \item 2 on the edge $v_1v_6$
+    \item 2 on the edge $v_1v_2$
+    \item 2 on the edge $v_2v_6$
+    \item 1 on the edge $v_6v_7$
+    \item 1 on the edge $v_4v_6$
+    \item 1 on the edge $v_5v_7$
+    \item 1 on the edge $v_3v_4$
+    \item 2 on the edge $v_5v_3$
+    \item 0 on the edge $v_2v_3$
+    \item 1 on the edge $v_1v_3$
+\end{itemize}
+% verify, please
+
+% TODO: Draw rectilinear layout of 2(b)
+
+
 
 \end{document}
 
