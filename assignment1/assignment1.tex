@@ -19,12 +19,12 @@
 \maketitle
 
 \section{Exercise 1: $b$-flow}
-% We can express a $b$-flow problem as a max-flow problem. Let every vertex,
-% v, with positive demand get an edge from the source with capacity $b_v$, and
-% every vertex $v$ with negative demand get an edge to the sink with capacity
-% $-b_v$. If we in this network can get a maximum flow that maxes out all of both
-% the source and sink edges, we have a corresponding $b$-flow.
-% This, however, was not what we were asked about.
+We can express a $b$-flow problem as a max-flow problem. Let every vertex,
+v, with positive demand get an edge from the source with capacity $b_v$, and
+every vertex $v$ with negative demand get an edge to the sink with capacity
+$-b_v$. If we in this network can get a maximum flow that maxes out all of both
+the source and sink edges, we have a corresponding $b$-flow.
+This, however, was not what we were asked about.
 
 Figure $1(a)$ does have a $b$-flow, as can be seen in \autoref{fig-a-bflow}.
 
@@ -66,6 +66,41 @@ cannot satisfy the requirement of $b_4 = -2$.
 \end{figure}
 
 \section{Exercise 2: Minimum-cost flow}
+The following is a LP-formualtion in standard form for the MCFP instance from figure
+$1(a)$ with the given cost function, where $x_{v_iv_j}$ represents the flow from vertex
+$i$ to vertex $j$. To do this we found all the constraints and converted the problem to
+standard form as we went along. Firstly, the capacity constraint gives us one constraint
+per edge, and also that the flow is positive. The flow constraint then gives us a single
+equality per vertex, which we converted to two inequalites. Finally we need to minimize
+the cost function, which is the same as maximizing the negative cost-function.
+
+\begin{align*}
+    maximize & - x_{v_1v_3} - 2x_{v_1v_4} - 3x_{v_2v_1} - 4x_{v_2v_4} - 5x_{v_2v_5} \\
+             & -6x_{v_3v_2} - 7x_{v_3v_4} - 8x_{v_4v_5} - 9x_{v_5v_1} - 10x_{v_5v_3} \\
+    s.t.     & \\
+             &  x_{v_1v_3} &\leq 4 \\
+             &  x_{v_1v_4} &\leq 1 \\
+             &  x_{v_2v_1} &\leq 5 \\
+             &  x_{v_2v_4} &\leq 2 \\
+             &  x_{v_2v_5} &\leq 3 \\
+             &  x_{v_3v_2} &\leq 4 \\
+             &  x_{v_3v_4} &\leq 3 \\
+             &  x_{v_4v_5} &\leq 2 \\
+             &  x_{v_5v_1} &\leq 6 \\
+             &  x_{v_5v_3} &\leq 7 \\
+             &  x_{v_2v_1} + x_{v_5v_1} - x_{v_1v_3} - x_{v_1v_4}  &\leq 3 \\
+             &  -x_{v_2v_1} - x_{v_5v_1} + x_{v_1v_3} + x_{v_1v_4} &\leq -3  \\
+             &  x_{v_3v_2} - x_{v_2v_1} - x_{v_2v_4} - x_{v_2v_5}  &\leq -2 \\ 
+             &  -x_{v_3v_2} + x_{v_2v_1} + x_{v_2v_4} + x_{v_2v_5} &\leq 2 \\ 
+             &  -x_{v_3v_2} - x_{v_3v_4} + x_{v_1v_3} + x_{v_5v_3} &\leq 4 \\
+             &  x_{v_3v_2} + x_{v_3v_4} - x_{v_1v_3} - x_{v_5v_3}  &\leq -4 \\
+             &  -x_{v_4v_5} + x_{v_1v_4} + x_{v_2v_4} + x_{v_3v_4} &\leq 2 \\
+             &  x_{v_4v_5} - x_{v_1v_4} - x_{v_2v_4} - x_{v_3v_4}  &\leq -2 \\
+             &  x_{v_2v_5} + x_{v_4v_5} - x_{v_5v_1} - x_{v_5v_3}  &\leq -7 \\ 
+             &  -x_{v_2v_5} - x_{v_4v_5} + x_{v_5v_1} + x_{v_5v_3} &\leq 8 \\
+             &  x_{v_1v_3}, x_{v_1v_4}, x_{v_2v_1}, x_{v_2v_4}, x_{v_2v_5} &\geq 0\\
+             &  x_{v_3v_2}, x_{v_3v_4}, x_{v_4v_5}, x_{v_5v_1}, x_{v_5v_3} &\geq 0
+\end{align*}
 
 \section{Exercise 3: Rectilinear planar embedding}
 
