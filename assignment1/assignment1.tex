@@ -76,8 +76,8 @@ equality per vertex, which we converted to two inequalites. Finally we need to m
 the cost function, which is the same as maximizing the negative cost-function.
 
 \begin{align*}
-    maximize &  
-             & 
+    maximize & - x_{v_1v_3} - 2x_{v_1v_4} - 3x_{v_2v_1} - 4x_{v_2v_4} - 5x_{v_2v_5} \\
+             & -6x_{v_3v_2} - 7x_{v_3v_4} - 8x_{v_4v_5} - 9x_{v_5v_1} - 10x_{v_5v_3} \\
     s.t.     & \\
              &  x_{v_1v_3} &\leq 4 \\
              &  x_{v_1v_4} &\leq 1 \\
@@ -102,35 +102,27 @@ the cost function, which is the same as maximizing the negative cost-function.
              &  x_{v_1v_3}, x_{v_1v_4}, x_{v_2v_1}, x_{v_2v_4}, x_{v_2v_5} &\geq 0\\
              &  x_{v_3v_2}, x_{v_3v_4}, x_{v_4v_5}, x_{v_5v_1}, x_{v_5v_3} &\geq 0
 \end{align*}
-
-The dual 
+\\
+\noindent The dual was created from the primal formulation by following the steps described in \cite[p. 880]{Cormen}. 
 
 \begin{align*}
-    minimize & - x_{v_1v_3} - 2x_{v_1v_4} - 3x_{v_2v_1} - 4x_{v_2v_4} - 5x_{v_2v_5} \\
-             & -6x_{v_3v_2} - 7x_{v_3v_4} - 8x_{v_4v_5} - 9x_{v_5v_1} - 10x_{v_5v_3} \\
+    minimize & \\
+             & 4y_1 + y_2 + 5y_3 + 2y_4 + 3y_5 + 4y_6 + 3y_7 + 2y_8 +\\ 
+             & 6y_9 + 7y_{10} + 3y_{11} - 3y_{12} - 2y_{13} + 2y_{14} + 4y_{15} - 4y_{16} + \\
+             & 2y_{17} - 2y_{18} - 7y_{19} + 8y_{20} \\
     s.t.     & \\
-             &  x_{v_1v_3} &\geq 4 \\
-             &  x_{v_1v_4} &\geq 1 \\
-             &  x_{v_2v_1} &\geq 5 \\
-             &  x_{v_2v_4} &\geq 2 \\
-             &  x_{v_2v_5} &\geq 3 \\
-             &  x_{v_3v_2} &\geq 4 \\
-             &  x_{v_3v_4} &\geq 3 \\
-             &  x_{v_4v_5} &\geq 2 \\
-             &  x_{v_5v_1} &\geq 6 \\
-             &  x_{v_5v_3} &\geq 7 \\
-             &  x_{v_2v_1} + x_{v_5v_1} - x_{v_1v_3} - x_{v_1v_4}  &\geq 3 \\
-             &  -x_{v_2v_1} - x_{v_5v_1} + x_{v_1v_3} + x_{v_1v_4} &\geq -3  \\
-             &  x_{v_3v_2} - x_{v_2v_1} - x_{v_2v_4} - x_{v_2v_5}  &\geq -2 \\ 
-             &  -x_{v_3v_2} + x_{v_2v_1} + x_{v_2v_4} + x_{v_2v_5} &\geq 2 \\ 
-             &  -x_{v_3v_2} - x_{v_3v_4} + x_{v_1v_3} + x_{v_5v_3} &\geq 4 \\
-             &  x_{v_3v_2} + x_{v_3v_4} - x_{v_1v_3} - x_{v_5v_3}  &\geq -4 \\
-             &  -x_{v_4v_5} + x_{v_1v_4} + x_{v_2v_4} + x_{v_3v_4} &\geq 2 \\
-             &  x_{v_4v_5} - x_{v_1v_4} - x_{v_2v_4} - x_{v_3v_4}  &\geq -2 \\
-             &  x_{v_2v_5} + x_{v_4v_5} - x_{v_5v_1} - x_{v_5v_3}  &\geq -7 \\ 
-             &  -x_{v_2v_5} - x_{v_4v_5} + x_{v_5v_1} + x_{v_5v_3} &\geq 8 \\
-             &  x_{v_1v_3}, x_{v_1v_4}, x_{v_2v_1}, x_{v_2v_4}, x_{v_2v_5} &\geq 0\\
-             &  x_{v_3v_2}, x_{v_3v_4}, x_{v_4v_5}, x_{v_5v_1}, x_{v_5v_3} &\geq 0
+             & y_1 - y_{11} + y_{12} - y_{16}  &\geq -1 \\
+             & y_2 - y_{11} + y_{17} - y_{18}  &\geq -2 \\
+             & y_3 + y_{11} - y_{12} - y_{13} + y_{14} &\geq -3 \\
+             & y_4 - y_{13} + y_{14} + y_{17} - y_{18} &\geq -4 \\
+             & y_5 - y_{13} + y_{14} + y_{19} - y_{20} &\geq -5 \\
+             & y_6 + y_{13} - y_{14} - y_{15} + y_{16} &\geq -6 \\
+             & y_7 - y_{14} + y_{15} + y_{16} - y_{17} &\geq -7 \\
+             & y_8 - y_{17} + y_{18} + y_{19} - y_{20} &\geq -8 \\
+             & y_9 + y_{11} - y_{12} - y_{19} + y_{20} &\geq -9 \\
+             & y_{10} + y_{15} - y_{16} - y_{19} + y_{20}  &\geq -10 \\
+             &  y_{1}, y_{2}, y_{3}, y_{4}, y_{5}, y_{6}, y_{7}, y_{8}, y_{9}, y_{10} &\geq 0\\
+             &  y_{11}, y_{12}, y_{13}, y_{14}, y_{15}, y_{16}, y_{17}, y_{18}, y_{19}, y_{20} &\geq 0
 \end{align*}
 
 \section{Exercise 3: Rectilinear planar embedding}
@@ -182,6 +174,6 @@ There are 13 break points in total:
 
 % Eh, vi winger den
 \includegraphics[width=0.5\textwidth]{images/rectilinear-2}
-
+\bibliographystyle{plain}
+\bibliography{references.bib}
 \end{document}
-
