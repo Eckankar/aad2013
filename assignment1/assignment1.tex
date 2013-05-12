@@ -157,7 +157,35 @@ There are 13 break points in total:
 % TODO
 
 \subsection{3.3}
-% TODO
+If any vertex has a degree higher than 4, it isn't possible to make a
+rectilinear embedding. The constraint of all edges having to be horizontal or
+vertical leaves only 4 possible places for the edge to exit a vertex (top,
+bottom, left, right).
+
+We now wish to prove, that
+
+\[
+    \sum_f x_{vf} = \begin{cases} 0 & \text{if $v$ has degree $2$} \\
+                                      2 & \text{if $v$ has degree $3$} \\
+                                      4 & \text{if $v$ has degree $4$.} \end{cases}
+\]
+
+If $v$ has degree $2$, we have two cases:
+
+\begin{itemize}
+    \item If the edges enter the vertex opposite each other, none of the
+          adjacent faces have any inner turns in the vertex, making the sum $0$.
+    \item Otherwise, there will be two faces adjacent to the vertex, one of
+          which has an inner turn, the other having an outer turn. This gives us a
+          sum of $1 + (-1) = 0$.
+\end{itemize}
+
+If $v$ has degree $3$, we have only one case: One adjacent face\footnote{The
+one facing the site without an edge.} has no inner turns, while there are two
+adjacent faces containing an inner turn. This yields a sum of $0+1+1 = 2$.
+
+If $v$ has degree $4$, we again have only one case: Four adjacent faces, each
+have an inner turn. This leaves us with the sum $1+1+1+1=4$.
 
 \subsection{3.4}
 % TODO
