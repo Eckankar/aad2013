@@ -174,6 +174,79 @@ There are 13 break points in total:
 
 % Eh, vi winger den
 \includegraphics[width=0.5\textwidth]{images/rectilinear-2}
+
+\subsection{3.2}
+\begin{align*}
+    \forall f \in F_i: &\sum_v x_{vf} + \sum_g (z_{fg} - z_{gf}) = 4 \\
+                       &\sum_v x_{vf_e} + \sum_g (z_{f_eg} - z_{gf_e}) = -4
+\end{align*}
+
+where $F_i$ is the set of internal faces, and $f_e$ is the external face. 
+
+% TODO: Verify
+
+\subsection{3.3}
+If any vertex has a degree higher than 4, it isn't possible to make a
+rectilinear embedding. The constraint of all edges having to be horizontal or
+vertical leaves only 4 possible places for the edge to exit a vertex (top,
+bottom, left, right).
+
+We now wish to prove, that
+
+\[
+    \sum_f x_{vf} = \begin{cases} 0 & \text{if $v$ has degree $2$} \\
+                                      2 & \text{if $v$ has degree $3$} \\
+                                      4 & \text{if $v$ has degree $4$.} \end{cases}
+\]
+
+If $v$ has degree $2$, we have two cases:
+
+\begin{itemize}
+    \item If the edges enter the vertex opposite each other, none of the
+          adjacent faces have any inner turns in the vertex, making the sum $0$.
+    \item Otherwise, there will be two faces adjacent to the vertex, one of
+          which has an inner turn, the other having an outer turn. This gives us a
+          sum of $1 + (-1) = 0$.
+\end{itemize}
+
+If $v$ has degree $3$, we have only one case: One adjacent face\footnote{The
+one facing the site without an edge.} has no inner turns, while there are two
+adjacent faces containing an inner turn. This yields a sum of $0+1+1 = 2$.
+
+If $v$ has degree $4$, we again have only one case: Four adjacent faces, each
+have an inner turn. This leaves us with the sum $1+1+1+1=4$.
+
+\subsection{3.4}
+Since each break point is an inner turn for precisely one face, the sum
+
+\[
+    \sum_f \sum_g z_{fg}
+\]
+
+yields the total number of break points in the entire graph. Minimizing this
+sum will therefore minimize the number of break points.
+
+This gives us the following linear program:
+
+\begin{align*}
+    minimize & \sum_f \sum_g z_{fg} \\
+    s.t.     & \\
+             % constaints from 3.2 
+             & \forall f \in F_i: \sum_v x_{vf} + \sum_g (z_{fg} - z_{gf}) = 4 \\
+             & \sum_v x_{vf_e} + \sum_g (z_{f_eg} - z_{gf_e}) = -4
+             % constaints from 3.3 
+             & \forall v \in V_2: \sum_f x_{vf} = 0 \\
+             & \forall v \in V_3: \sum_f x_{vf} = 2 \\
+             & \forall v \in V_4: \sum_f x_{vf} = 4 \\
+             % non-negativity
+             & \forall f, g: z_{fg} \geq 0 
+\end{align*}
+
+where $V_n$ is the set of vertices of degree $n$.
+
+\subsection{3.5}
+% TODO
+
 \bibliographystyle{plain}
 \bibliography{references.bib}
 \end{document}
