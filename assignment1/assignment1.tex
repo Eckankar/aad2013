@@ -188,7 +188,31 @@ If $v$ has degree $4$, we again have only one case: Four adjacent faces, each
 have an inner turn. This leaves us with the sum $1+1+1+1=4$.
 
 \subsection{3.4}
-% TODO
+Since each break point is an inner turn for precisely one face, the sum
+
+\[
+    \sum_f \sum_g z_{fg}
+\]
+
+yields the total number of break points in the entire graph. Minimizing this
+sum will therefore minimize the number of break points.
+
+This gives us the following linear program:
+
+\begin{align*}
+    minimize & \sum_f \sum_g z_{fg} \\
+    s.t.     & \\
+             % constaints from 3.2 
+             % TODO
+             % constaints from 3.3 
+             & \forall v \in V_2: \sum_f x_{vf} = 0 \\
+             & \forall v \in V_3: \sum_f x_{vf} = 2 \\
+             & \forall v \in V_4: \sum_f x_{vf} = 4 \\
+             % non-negativity
+             & \forall f, g: z_{fg} \geq 0 
+\end{align*}
+
+where $V_n$ is the set of vertices of degree $n$
 
 \subsection{3.5}
 % TODO
