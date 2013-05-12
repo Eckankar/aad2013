@@ -10,6 +10,7 @@
 \usetikzlibrary{shapes,arrows}
 \usepackage{tkz-graph}
 
+\usepackage{graphicx}
 \usepackage{hyperref}
 
 \title{Advanced Algorithms\\Assignment 1}
@@ -135,9 +136,22 @@ The dual
 \section{Exercise 3: Rectilinear planar embedding}
 
 \subsection{Exercise 3.1}
-% TODO: z_{fg} table
+$z_{fg}$ is given by
+\begin{tabular}{|l||l|l|l|l|l|}
+    \hline
+     & $a$ & $b$ & $c$ & $d$ & $e$ \\
+    \hline
+    \hline
+    $a$ & 0 & 0 & 0 & 0 & 0 \\
+    $b$ & 2 & 0 & 1 & 1 & 0 \\
+    $c$ & 1 & 1 & 0 & 0 & 0 \\
+    $d$ & 0 & 1 & 0 & 0 & 2 \\
+    $e$ & 4 & 0 & 0 & 0 & 0 \\
+    \hline
+\end{tabular}
 
-% x_{vf} table
+
+$x_{vf}$ is given by
 \begin{tabular}{|l||l|l|l|l|l|l|l|}
     \hline
      & $v_1$ & $v_2$ & $v_3$ & $v_4$ & $v_5$ & $v_6$ & $v_7$ \\
@@ -166,9 +180,8 @@ There are 13 break points in total:
 \end{itemize}
 % verify, please
 
-% TODO: Draw rectilinear layout of 2(b)
-
-
+% Eh, vi winger den
+\includegraphics[width=0.5\textwidth]{images/rectilinear-2}
 
 \end{document}
 
