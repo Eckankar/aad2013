@@ -75,8 +75,8 @@ equality per vertex, which we converted to two inequalites. Finally we need to m
 the cost function, which is the same as maximizing the negative cost-function.
 
 \begin{align*}
-    maximize & - x_{v_1v_3} - 2x_{v_1v_4} - 3x_{v_2v_1} - 4x_{v_2v_4} - 5x_{v_2v_5} \\
-             & -6x_{v_3v_2} - 7x_{v_3v_4} - 8x_{v_4v_5} - 9x_{v_5v_1} - 10x_{v_5v_3} \\
+    maximize &  
+             & 
     s.t.     & \\
              &  x_{v_1v_3} &\leq 4 \\
              &  x_{v_1v_4} &\leq 1 \\
@@ -98,6 +98,36 @@ the cost function, which is the same as maximizing the negative cost-function.
              &  x_{v_4v_5} - x_{v_1v_4} - x_{v_2v_4} - x_{v_3v_4}  &\leq -2 \\
              &  x_{v_2v_5} + x_{v_4v_5} - x_{v_5v_1} - x_{v_5v_3}  &\leq -7 \\ 
              &  -x_{v_2v_5} - x_{v_4v_5} + x_{v_5v_1} + x_{v_5v_3} &\leq 8 \\
+             &  x_{v_1v_3}, x_{v_1v_4}, x_{v_2v_1}, x_{v_2v_4}, x_{v_2v_5} &\geq 0\\
+             &  x_{v_3v_2}, x_{v_3v_4}, x_{v_4v_5}, x_{v_5v_1}, x_{v_5v_3} &\geq 0
+\end{align*}
+
+The dual 
+
+\begin{align*}
+    minimize & - x_{v_1v_3} - 2x_{v_1v_4} - 3x_{v_2v_1} - 4x_{v_2v_4} - 5x_{v_2v_5} \\
+             & -6x_{v_3v_2} - 7x_{v_3v_4} - 8x_{v_4v_5} - 9x_{v_5v_1} - 10x_{v_5v_3} \\
+    s.t.     & \\
+             &  x_{v_1v_3} &\geq 4 \\
+             &  x_{v_1v_4} &\geq 1 \\
+             &  x_{v_2v_1} &\geq 5 \\
+             &  x_{v_2v_4} &\geq 2 \\
+             &  x_{v_2v_5} &\geq 3 \\
+             &  x_{v_3v_2} &\geq 4 \\
+             &  x_{v_3v_4} &\geq 3 \\
+             &  x_{v_4v_5} &\geq 2 \\
+             &  x_{v_5v_1} &\geq 6 \\
+             &  x_{v_5v_3} &\geq 7 \\
+             &  x_{v_2v_1} + x_{v_5v_1} - x_{v_1v_3} - x_{v_1v_4}  &\geq 3 \\
+             &  -x_{v_2v_1} - x_{v_5v_1} + x_{v_1v_3} + x_{v_1v_4} &\geq -3  \\
+             &  x_{v_3v_2} - x_{v_2v_1} - x_{v_2v_4} - x_{v_2v_5}  &\geq -2 \\ 
+             &  -x_{v_3v_2} + x_{v_2v_1} + x_{v_2v_4} + x_{v_2v_5} &\geq 2 \\ 
+             &  -x_{v_3v_2} - x_{v_3v_4} + x_{v_1v_3} + x_{v_5v_3} &\geq 4 \\
+             &  x_{v_3v_2} + x_{v_3v_4} - x_{v_1v_3} - x_{v_5v_3}  &\geq -4 \\
+             &  -x_{v_4v_5} + x_{v_1v_4} + x_{v_2v_4} + x_{v_3v_4} &\geq 2 \\
+             &  x_{v_4v_5} - x_{v_1v_4} - x_{v_2v_4} - x_{v_3v_4}  &\geq -2 \\
+             &  x_{v_2v_5} + x_{v_4v_5} - x_{v_5v_1} - x_{v_5v_3}  &\geq -7 \\ 
+             &  -x_{v_2v_5} - x_{v_4v_5} + x_{v_5v_1} + x_{v_5v_3} &\geq 8 \\
              &  x_{v_1v_3}, x_{v_1v_4}, x_{v_2v_1}, x_{v_2v_4}, x_{v_2v_5} &\geq 0\\
              &  x_{v_3v_2}, x_{v_3v_4}, x_{v_4v_5}, x_{v_5v_1}, x_{v_5v_3} &\geq 0
 \end{align*}
