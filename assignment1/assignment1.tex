@@ -176,14 +176,24 @@ There are 13 break points in total:
 \includegraphics[width=0.5\textwidth]{images/rectilinear-2}
 
 \subsection{3.2}
+The constraints can be expressed as:
+
 \begin{align*}
     \forall f \in F_i: &\sum_v x_{vf} + \sum_g (z_{fg} - z_{gf}) = 4 \\
                        &\sum_v x_{vf_e} + \sum_g (z_{f_eg} - z_{gf_e}) = -4
 \end{align*}
 
-where $F_i$ is the set of internal faces, and $f_e$ is the external face. 
+\noindent where $F_i$ is the set of internal faces, and $f_e$ is the external face. 
 
-% TODO: Verify
+Since we have all values for $z_{fg}$ and $x_{vf}$, verification for the boundary cycles
+$a$ and $e$ is easy:
+
+\begin{align*}
+    \sum_v x_{vf_a} + \sum_g (z_{ag} - z_{ga}) &= 3 + (-7) \\
+                                               &= -4 \\
+    \sum_v x_{vf_e} + \sum_g (z_{eg} - z_{ge}) &= (3-1) + (4-2) \\
+                                               &= 4
+\end{align*}
 
 \subsection{3.3}
 If any vertex has a degree higher than 4, it isn't possible to make a
