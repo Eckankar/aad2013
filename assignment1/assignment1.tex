@@ -154,7 +154,14 @@ There are 13 break points in total:
 \includegraphics[width=0.5\textwidth]{images/rectilinear-2}
 
 \subsection{3.2}
-% TODO
+\begin{align*}
+    \forall f \in F_i: &\sum_v x_{vf} + \sum_g (z_{fg} - z_{gf}) = 4 \\
+                       &\sum_v x_{vf_e} + \sum_g (z_{f_eg} - z_{gf_e}) = -4
+\end{align*}
+
+where $F_i$ is the set of internal faces, and $f_e$ is the external face. 
+
+% TODO: Verify
 
 \subsection{3.3}
 If any vertex has a degree higher than 4, it isn't possible to make a
@@ -203,7 +210,8 @@ This gives us the following linear program:
     minimize & \sum_f \sum_g z_{fg} \\
     s.t.     & \\
              % constaints from 3.2 
-             % TODO
+             & \forall f \in F_i: \sum_v x_{vf} + \sum_g (z_{fg} - z_{gf}) = 4 \\
+             & \sum_v x_{vf_e} + \sum_g (z_{f_eg} - z_{gf_e}) = -4
              % constaints from 3.3 
              & \forall v \in V_2: \sum_f x_{vf} = 0 \\
              & \forall v \in V_3: \sum_f x_{vf} = 2 \\
@@ -212,7 +220,7 @@ This gives us the following linear program:
              & \forall f, g: z_{fg} \geq 0 
 \end{align*}
 
-where $V_n$ is the set of vertices of degree $n$
+where $V_n$ is the set of vertices of degree $n$.
 
 \subsection{3.5}
 % TODO
