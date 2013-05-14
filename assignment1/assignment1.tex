@@ -255,11 +255,42 @@ This gives us the following linear program:
 where $V_n$ is the set of vertices of degree $n$.
 
 \subsection{3.5}
-We didn't quite figure out how to solve this exercise. Our best guess is that
-we need to look at the dual graph (i.e. where the faces are vertices). Then
-we could let the edge capacities be $\infty$, and the flow between $f$ and
-$g$ be given by $z_{fg}$. This still leaves us with the problem of finding $b$
-values; a problem we haven't solved yet.
+To model this, we choose to construct a new graph.
+
+In this graph, the vertices will be the vertices from the original graph, as
+well as the faces from the original graph.
+
+Between the faces $f$ and $g$, there will be an edge with capacity
+$\infty$. The flow along this edge corresponds to $z_{fg}$.
+If the face $f$ is an outer face, then $b_f = -4$, else $b_f = 4$.
+
+For the vertex, $v$, there is three possible cases, corresponding to the cases from
+3.3.
+
+\begin{itemize}
+    \item If $v$ has degree $2$, there is an edge going to and coming from each adjacent face
+          with capacity $1$. $b_v = 0$.
+    \item If $v$ has degree $3$, there is an edge with capacity $1$ coming from each adjacent face.
+          $b_v = 2$.
+    \item If $v$ has degree $4$, there is an edge with capacity $1$ coming from each adjacent face.
+          $b_v = 4$.
+\end{itemize}
+
+Let $w_{ab}$ denote the flow from $a$ to $b$ in this new graph, then we get the following instance of MCFP:
+
+\begin{align*}
+    minimize & \sum_f \sum_g w_{fg} \\
+    s.t.     & \\
+             % constaints from 3.2 
+             & \forall f \in F_i: \left(\sum_{v \in \delta^-(f)} w_{vf} + \sum_g (w_{fg})\right) - \left(\sum_{v \in \delta^+(f)} w_{fv} + \sum_g (w_{gf})\right) = -4 \\
+             & \left(\sum_{v \in \delta^-(f_e)} w_{vf_e} + \sum_g (w_{f_eg})\right) - \left(\sum_{v \in \delta^+(f_e)} w_{f_ev} + \sum_g (w_{gf_e})\right) = 4 \\
+             % constaints from 3.3 
+             & \forall v \in V_2: \sum_{f \in \delta^-(v)} w_{fv} - \sum_{f \in \delta^+(v)} w_{vf} = 0 \\
+             & \forall v \in V_3: \sum_{f \in \delta^-(v)} w_{fv} - \sum_{f \in \delta^+(v)} w_{vf} = 2 \\
+             & \forall v \in V_3: \sum_{f \in \delta^-(v)} w_{fv} - \sum_{f \in \delta^+(v)} w_{vf} = 4 \\
+             % non-negativity
+             & \forall a, b: w_{ab} \geq 0 
+\end{align*}
 
 \bibliographystyle{plain}
 \bibliography{references.bib}
