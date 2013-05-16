@@ -1,0 +1,65 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[T1]{fontenc}
+
+\usepackage{amsmath,amssymb,amsfonts}
+
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows}
+\usepackage{tkz-graph}
+
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+\title{Advanced Algorithms\\Assignment 2}
+\author{Kristoffer Søholm \and Sebastian Tørholm \and Oskar Behrendt}
+
+\begin{document}
+\maketitle
+
+\section{Formulating the problem}
+\subsection{Definition of $TCP$}
+Let $G = (V, E)$ be a weighted graph with distance measure $d$,
+$r \geq 0$ be the sight distance and $P$ be a cycle in $G$. We say
+that $P$ is a \emph{sightseeing tour} if there for all $v \in V$ exists a
+$w \in P$, such that $d(v, w) \leq r$. We then define the \emph{traveling
+couple problem}, to be the problem of finding a sightseeing tour $T$ minimizing
+the \emph{tour length}, $\sum_{(v,w) \in T} d(v, w)$.
+
+We then define the related decision problem $TCP$ to be the problem of determining
+whether there exists sightseeing tour of length at most $l$ in $G$. More formally,
+
+\begin{align}
+    TCP = \{ \langle G, d, r, l \rangle\ :& G = (V,E) \text{ is a graph}, \\
+                                          & d \text{ is a distance measure on } G, \\
+                                          & r \geq 0, \\
+                                          & G \text{ has a sightseeing tour with tour length at most } l \}
+\end{align}
+
+\subsection{Reduction from $HAM-CYCLE$}
+We wish to show that any instance of $HAM-CYCLE$ can be reduced to an instance of $TCP$.
+
+Let $G = (V, E)$ be a graph, and define a distance function $d$ on $G$ to be
+\[
+    \forall v, w \in V : d(v, w) = 1.
+\]
+Furthermore, let $r = \frac{1}{2}$.
+
+We now claim, that any solution to $TCP$ in this graph corresponds to a Hamiltonian cycle.
+
+Since the distance between any two vertices is greater than the sight radius, we must have that
+all vertices are visited. Furthermore, we know that any sightseeing tour is a cycle by definition.
+A Hamiltonian cycle makes use of precisely $|V|$ edges, and since each edge has length $1$, this gives
+us that each solution to $TCP$ in this graph must have length $|V|$.
+
+This gives us, that
+\[
+    \langle G, d, r, |V| \rangle \in TCP \Rightarrow \langle G \rangle \in HAM-CYCLE,
+\]
+which provides the reduction that proves $TCP$ to be NP-complete.
+
+\bibliographystyle{plain}
+\bibliography{references.bib}
+\end{document}
