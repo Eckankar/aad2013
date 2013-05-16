@@ -31,12 +31,12 @@ the \emph{tour length}, $\sum_{(v,w) \in T} d(v, w)$.
 We then define the related decision problem $TCP$ to be the problem of determining
 whether there exists sightseeing tour of length at most $l$ in $G$. More formally,
 
-\begin{align}
-    TCP = \{ \langle G, d, r, l \rangle\ :& G = (V,E) \text{ is a graph}, \\
-                                          & d \text{ is a distance measure on } G, \\
-                                          & r \geq 0, \\
-                                          & G \text{ has a sightseeing tour with tour length at most } l \}
-\end{align}
+\begin{align*}
+    TCP = \{ \langle G, d, r, l \rangle :\ & G = (V,E) \text{ is a graph}, \\
+                                           & d \text{ is a distance measure on } G, \\
+                                           & r \geq 0, \\
+                                           & G \text{ has a sightseeing tour with tour length at most } l \}
+\end{align*}
 
 \subsection{Reduction from $HAM-CYCLE$}
 We wish to show that any instance of $HAM-CYCLE$ can be reduced to an instance of $TCP$.
@@ -59,6 +59,15 @@ This gives us, that
     \langle G, d, r, |V| \rangle \in TCP \Rightarrow \langle G \rangle \in HAM-CYCLE,
 \]
 which provides the reduction that proves $TCP$ to be NP-complete.
+
+\subsection{Exercise 1.2}
+An obvious, if rather trivial, example is the following graph (borrowed from exercise 2).
+
+\includegraphics[width=\textwidth]{tcp.png}
+
+Here the optimal TCP is simply to start at the middle vertex and stay there, which has a length of 0, which is shorter than any 1-tree.
+
+\subsection{Execise 1.3}
 
 \bibliographystyle{plain}
 \bibliography{references.bib}
