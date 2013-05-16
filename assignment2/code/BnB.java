@@ -135,6 +135,7 @@ public class BnB {
 	
 	/** Returns a lower bound for the path corresponding to n. */
 	private double lowerbound(BnBNode n){
+        return ILPLowerBound.lowerbound(this.problem, n);
 //		double pathLength = 0;
 //		BnBNode p = n;
 //		while(true){
@@ -147,7 +148,7 @@ public class BnB {
 //		Point2D.Double end = problem.vertices[n.edge.v1];
 //		
 //		return pathLength + end.distance(start);
-		return 0;
+//		return 0;
 	}
 	
 	/** Return an array with all the vertices visited in the specified path */
