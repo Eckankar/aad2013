@@ -90,7 +90,7 @@ Here the optimal TCP is simply to start at the middle vertex and stay there, whi
              % w_i = exists(incoming)
              & \forall i: (\sum_j e_{ji} - w_i) = 0 \\
              % at least one vertex visited in the viscinity 
-             & \forall i: (\sum_{j \in v(i)} w_j) \geq 1 \\
+             & \forall i: \sum_{j \in v(i)} w_j \geq 1 \\
 \end{align*}
 
 \bibliographystyle{plain}
