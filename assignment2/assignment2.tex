@@ -32,7 +32,7 @@ We then define the related decision problem $TCP$ to be the problem of determini
 whether there exists sightseeing tour of length at most $l$ in $G$. More formally,
 
 \begin{align*}
-    TCP = \{ \langle G, d, r, l \rangle :\ & G = (V,E) \text{ is a graph}, \\
+    TCP = \{ \langle G, d, r, l \rangle :\ & G = (V,E) \text{ is a complete graph}, \\
                                            & d \text{ is a distance measure on } G, \\
                                            & r \geq 0, \\
                                            & G \text{ has a sightseeing tour with tour length at most } l \}
@@ -43,7 +43,9 @@ We wish to show that any instance of $HAM-CYCLE$ can be reduced to an instance o
 
 Let $G = (V, E)$ be a graph, and define a distance function $d$ on $G$ to be
 \[
-    \forall v, w \in V : d(v, w) = 1.
+    \forall v, w \in V : d(v, w) = \begin{cases} 1\ \ \text{if}\ \ e_{vw} \in E \\
+                                                 2\ \ \text{otherwise}
+                                   \end{cases} 
 \]
 Furthermore, let $r = \frac{1}{2}$.
 
