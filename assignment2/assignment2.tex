@@ -87,6 +87,8 @@ Here the optimal TCP is simply to start at the middle vertex and stay there, whi
              & \forall i: \sum_j (e_{ji} + e_{ij}) \geq 0 \\
              % incoming - outgoing = 0
              & \forall i: \sum_j (e_{ji} - e_{ij}) = 0 \\
+             % an edge can't be used in both directions
+             & \forall i,j: e_{ji} + e_{ij} \leq 1 \\
              % w_i = exists(incoming)
              & \forall i: (\sum_j e_{ji} - w_i) = 0 \\
              % at least one vertex visited in the viscinity 
