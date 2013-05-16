@@ -41,7 +41,8 @@ whether there exists sightseeing tour of length at most $l$ in $G$. More formall
 \subsection{Reduction from $HAM-CYCLE$}
 We wish to show that any instance of $HAM-CYCLE$ can be reduced to an instance of $TCP$.
 
-Let $G = (V, E)$ be a graph, and define a distance function $d$ on $G$ to be
+Let $G = (V, E)$ be a graph, we then define $G'$ to be the complete graph with
+the vertices $V$, and define a distance function $d$ on $G'$, given by
 \[
     \forall v, w \in V : d(v, w) = \begin{cases} 1\ \ \text{if}\ \ e_{vw} \in E \\
                                                  2\ \ \text{otherwise}
@@ -49,16 +50,21 @@ Let $G = (V, E)$ be a graph, and define a distance function $d$ on $G$ to be
 \]
 Furthermore, let $r = \frac{1}{2}$.
 
-We now claim, that any solution to $TCP$ in this graph corresponds to a Hamiltonian cycle.
+We now claim, that any minimal solution to $TCP$ in this graph corresponds to
+a Hamiltonian cycle in $G$.
 
-Since the distance between any two vertices is greater than the sight radius, we must have that
-all vertices are visited. Furthermore, we know that any sightseeing tour is a cycle by definition.
-A Hamiltonian cycle makes use of precisely $|V|$ edges, and since each edge has length $1$, this gives
-us that each solution to $TCP$ in this graph must have length $|V|$.
+Since the distance between any two vertices is greater than the sight radius,
+we must have that all vertices are visited in order for $TCP$ to be solved.
+Furthermore, we know that any sightseeing tour is a cycle by definition. Since a
+Hamiltonian cycle makes use of precisely $|V|$ edges, and each edge has a weight of
+at least $1$, we have that a any Hamiltonian cycle in $G'$ must have length at least $|V|$.
+
+In particular we notice, that the length of the tour is $|V|$, and thus minimal,
+whenever the tour is a Hamiltonian cycle in the original graph $G$.
 
 This gives us, that
 \[
-    \langle G, d, r, |V| \rangle \in TCP \Rightarrow \langle G \rangle \in HAM-CYCLE,
+    \langle G', d, r, |V| \rangle \in TCP \Rightarrow \langle G \rangle \in HAM-CYCLE,
 \]
 which provides the reduction that proves $TCP$ to be NP-complete.
 
