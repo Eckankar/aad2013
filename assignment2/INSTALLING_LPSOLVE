@@ -1,0 +1,3 @@
+sudo apt-get install lp-solve lp-solve-doc
+http://sourceforge.net/projects/lpsolve/files/lpsolve/5.5.2.0/lp_solve_5.5.2.0_java.zip/download
+http://lpsolve.sourceforge.net/5.5/Java/README.html - følg install guiden
