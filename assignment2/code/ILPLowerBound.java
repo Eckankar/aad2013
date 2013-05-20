@@ -23,10 +23,15 @@ class ILPLowerBound {
 
             pw.flush();
 
-            LpSolve solver = LpSolve.readLp(program.getPath(), LpSolve.NORMAL, null);
-            // Do stuff with linear program.
+            LpSolve solver = LpSolve.readLp(program.getPath(), LpSolve.CRITICAL, null);
+            solver.solve();
+            double result = solver.getObjective();
             solver.deleteLp();
             program.delete();
+
+            //System.out.printf("res = %f\n", result);
+
+            return result;
         } catch (Exception e) {
             e.printStackTrace();
         }
