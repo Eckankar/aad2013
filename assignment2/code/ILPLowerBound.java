@@ -80,6 +80,7 @@ class ILPLowerBound {
     private static String noBranchConstraints(TCPProblem p) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < p.n; i++) {
+            sb.append("nbc").append(i).append(": ");
             for (int j = 0; j < p.n; j++) {
                 if (i==j) continue;
                 sb.append(" + e_").append(i).append("_").append(j)
@@ -94,6 +95,7 @@ class ILPLowerBound {
     private static String ingoingEqualsOutgoingConstraints(TCPProblem p) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < p.n; i++) {
+            sb.append("ieo").append(i).append(": ");
             for (int j = 0; j < p.n; j++) {
                 if (i==j) continue;
                 sb.append(" + e_").append(i).append("_").append(j)
@@ -108,6 +110,7 @@ class ILPLowerBound {
     private static String vertexDegreeConstraints(TCPProblem p) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < p.n; i++) {
+            sb.append("vdc").append(i).append(": ");
             for (int j = 0; j < p.n; j++) {
                 if (i==j) continue;
                 sb.append(" + e_").append(j).append("_").append(i);
@@ -125,7 +128,8 @@ class ILPLowerBound {
         for (int i = 0; i < p.n; i++) {
             for (int j = 0; j < i; j++) {
                 if (i==j) continue;
-                sb.append("e_").append(i).append("_").append(j)
+                sb.append("nbde").append(i).append("_").append(j).append(": ")
+                  .append("e_").append(i).append("_").append(j)
                   .append(" + e_").append(j).append("_").append(i)
                   .append(" <= 1;\n");
             }
@@ -137,8 +141,8 @@ class ILPLowerBound {
     private static String allVerticesSeenConstraints(TCPProblem p) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < p.n; i++) {
-            for (int j = 0; j < p.n; j++) {
-                if (i==j) continue;
+            sb.append("avs").append(i).append(": ");
+            for (int j : p.vicinities[i]) {
                 sb.append(" + w_").append(j);
             }
             sb.append(" >= 1;\n");
@@ -151,7 +155,9 @@ class ILPLowerBound {
         StringBuilder sb = new StringBuilder();
 
         while (n != null) {
-            sb.append("e_").append(n.edge.v0).append("_").append(n.edge.v1)
+            int i = n.edge.v0, j = n.edge.v1;
+            sb.append("ve").append(i).append("_").append(j).append(": ")
+              .append("e_").append(i).append("_").append(j)
               .append(" = 1;\n");
             n = n.parent;
         }
