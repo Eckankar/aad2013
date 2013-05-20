@@ -73,6 +73,7 @@ class ILPLowerBound {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < p.n; i++) {
             for (int j = 0; j < p.n; j++) {
+                if (i==j) continue;
                 sb.append(" + e_").append(i).append("_").append(j)
                   .append(" + e_").append(j).append("_").append(i);
             }
@@ -86,6 +87,7 @@ class ILPLowerBound {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < p.n; i++) {
             for (int j = 0; j < p.n; j++) {
+                if (i==j) continue;
                 sb.append(" + e_").append(i).append("_").append(j)
                   .append(" - e_").append(j).append("_").append(i);
             }
@@ -99,6 +101,7 @@ class ILPLowerBound {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < p.n; i++) {
             for (int j = 0; j < p.n; j++) {
+                if (i==j) continue;
                 sb.append(" + e_").append(j).append("_").append(i);
             }
             sb.append("- w_").append(i);
