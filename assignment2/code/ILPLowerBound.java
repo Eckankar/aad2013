@@ -16,6 +16,7 @@ class ILPLowerBound {
             pw.write("min: " + objective(p) + ";\n");
             pw.write(noBranchConstraints(p));
             pw.write(ingoingEqualsOutgoingConstraints(p));
+            pw.write(vertexDegreeConstraints(p));
             pw.write("bin " + binvars(p) + ";\n");
 
             pw.flush();
@@ -61,6 +62,10 @@ class ILPLowerBound {
             }
         }
 
+        for (int i = 0; i < p.n; i++) {
+            sb.append(", w_").append(i);
+        }
+
         return sb.toString();
     }
 
@@ -84,6 +89,20 @@ class ILPLowerBound {
                 sb.append(" + e_").append(i).append("_").append(j)
                   .append(" - e_").append(j).append("_").append(i);
             }
+            sb.append(" = 0;\n");
+        }
+
+        return sb.toString();
+    }
+
+    private static String vertexDegreeConstraints(TCPProblem p) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < p.n; i++) {
+            for (int j = 0; j < p.n; j++) {
+                sb.append(" + e_").append(j).append("_").append(i);
+            }
+            sb.append("- w_").append(i);
+
             sb.append(" = 0;\n");
         }
 
