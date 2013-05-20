@@ -30,8 +30,6 @@ class ILPLowerBound {
             solver.deleteLp();
             program.delete();
 
-            System.out.printf("res = %f\n", result);
-
             return result;
         } catch (Exception e) {
             e.printStackTrace();
