@@ -17,6 +17,8 @@ class ILPLowerBound {
             pw.write(noBranchConstraints(p));
             pw.write(ingoingEqualsOutgoingConstraints(p));
             pw.write(vertexDegreeConstraints(p));
+            pw.write(noBidirectionalEdgesConstraints(p));
+            pw.write(connectedGraphConstraints(p));
             pw.write("bin " + binvars(p) + ";\n");
 
             pw.flush();
@@ -107,6 +109,33 @@ class ILPLowerBound {
             sb.append("- w_").append(i);
 
             sb.append(" = 0;\n");
+        }
+
+        return sb.toString();
+    }
+
+    private static String noBidirectionalEdgesConstraints(TCPProblem p) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < p.n; i++) {
+            for (int j = 0; j < i; j++) {
+                if (i==j) continue;
+                sb.append("e_").append(i).append("_").append(j)
+                  .append(" + e_").append(j).append("_").append(i)
+                  .append(" <= 1;\n");
+            }
+        }
+
+        return sb.toString();
+    }
+
+    private static String connectedGraphConstraints(TCPProblem p) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < p.n; i++) {
+            for (int j = 0; j < p.n; j++) {
+                if (i==j) continue;
+                sb.append(" + w_").append(j);
+            }
+            sb.append(" >= 1;\n");
         }
 
         return sb.toString();
