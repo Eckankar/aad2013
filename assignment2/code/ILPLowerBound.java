@@ -19,6 +19,7 @@ class ILPLowerBound {
             pw.write(vertexDegreeConstraints(p));
             pw.write(noBidirectionalEdgesConstraints(p));
             pw.write(allVerticesSeenConstraints(p));
+            pw.write(visitedEdgeConstraints(p, n));
             pw.write("bin " + binvars(p) + ";\n");
 
             pw.flush();
@@ -29,7 +30,7 @@ class ILPLowerBound {
             solver.deleteLp();
             program.delete();
 
-            //System.out.printf("res = %f\n", result);
+            System.out.printf("res = %f\n", result);
 
             return result;
         } catch (Exception e) {
@@ -141,6 +142,18 @@ class ILPLowerBound {
                 sb.append(" + w_").append(j);
             }
             sb.append(" >= 1;\n");
+        }
+
+        return sb.toString();
+    }
+
+    private static String visitedEdgeConstraints(TCPProblem p, BnBNode n) {
+        StringBuilder sb = new StringBuilder();
+
+        while (n != null) {
+            sb.append("e_").append(n.edge.v0).append("_").append(n.edge.v1)
+              .append(" = 1;\n");
+            n = n.parent;
         }
 
         return sb.toString();
