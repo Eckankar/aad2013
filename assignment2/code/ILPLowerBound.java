@@ -14,7 +14,7 @@ class ILPLowerBound {
             // File format: http://lpsolve.sourceforge.net/5.5/lp-format.htm
 
             pw.write("min: " + objective(p) + ";\n");
-            pw.write("int " + intvars(p) + ";\n");
+            pw.write("bin " + binvars(p) + ";\n");
 
             pw.flush();
             LpSolve solver = LpSolve.readLp(program.getPath(), LpSolve.NORMAL, null);
@@ -42,7 +42,7 @@ class ILPLowerBound {
         return sb.toString();
     }
 
-    private static String intvars(TCPProblem p) {
+    private static String binvars(TCPProblem p) {
         boolean begin = true;
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < p.n; i++) {
