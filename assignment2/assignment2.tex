@@ -80,6 +80,7 @@ Here the optimal TCP is simply to start at the middle vertex and stay there, whi
 \subsection{Exercise 1.3}
 We have chosen to use the following ILP:
 
+\label{ex13}
 \begin{align}
     minimize & \sum_i \sum_j d(v_i, v_j) e_{ij} \nonumber \\
     s.t.     & \nonumber \\ 
@@ -98,6 +99,9 @@ We have chosen to use the following ILP:
              & \forall i: \sum_{j \in v(i)} w_j \geq 1 \label{allseen}
 \end{align}
 
+Here we let $e_{ij}$ be $1$ if the edge $(i,j)$ is used in the path and $0$ otherwise.
+Similarly $w_i$ denotes the use of vertex $i$.
+
 \begin{itemize}
     \item \autoref{used} and \autoref{used2} ensures that every edge must either be used or unused.
     \item \autoref{nobranch} ensures that there are no branches in the path.
@@ -110,7 +114,19 @@ We have chosen to use the following ILP:
 
 \section{Exercise 2: Practice}
 
-\subsection{Execise 2.2}
+\subsection{Exercise 2.1}
+We have implemented the lower-bound method using the ILP described in \autoref{ex13},
+with no relaxed constraints.
+
+The source code for the ILP lower bound solver can be found in \texttt{ILPLowerBound.java},
+with each constraint described in its own method.
+
+The implementation makes use of the Java wrapper to \texttt{lp\_solve}, which
+can be found at \url{http://lpsolve.sourceforge.net/5.5/Java/README.html}.
+Note, we did experience some bugs with the wrapper when trying to run it on a
+64-bit machine. We would therefore advise to run it on a 32-bit machine instead.
+
+\subsection{Exercise 2.2}
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.4\textwidth, trim=0px 0px 200px 0px]{graph1.png}
