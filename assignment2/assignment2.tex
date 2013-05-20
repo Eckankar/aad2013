@@ -76,6 +76,7 @@ An obvious, if rather trivial, example is the following graph (borrowed from exe
 Here the optimal TCP is simply to start at the middle vertex and stay there, which has a length of 0, which is shorter than any 1-tree.
 
 \subsection{Exercise 1.3}
+\label{ex13}
 \begin{align*}
     minimize & \sum_i \sum_j d(v_i, v_j) e_{ij} \\
     s.t.     & \\
@@ -95,6 +96,18 @@ Here the optimal TCP is simply to start at the middle vertex and stay there, whi
 \end{align*}
 
 \section{Exercise 2: Practice}
+
+\subsection{Exercise 2.1}
+We have implemented the lower-bound method using the ILP described in \autoref{ex13},
+with no relaxed constraints.
+
+The source code for the ILP lower bound solver can be found in \texttt{ILPLowerBound.java},
+with each constraint described in its own method.
+
+The implementation makes use of the Java wrapper to \texttt{lp\_solve}, which
+can be found at \href{http://lpsolve.sourceforge.net/5.5/Java/README.html}.
+Note, we did experience some bugs with the wrapper when trying to run it on a
+64-bit machine. We would therefore advise to run it on a 32-bit machine instead.
 
 \subsection{Exercise 2.2}
 \includegraphics[width=\textwidth]{graph1.png}
