@@ -14,9 +14,11 @@ class ILPLowerBound {
             // File format: http://lpsolve.sourceforge.net/5.5/lp-format.htm
 
             pw.write("min: " + objective(p) + ";\n");
+            pw.write(noBranchConstraints(p));
             pw.write("bin " + binvars(p) + ";\n");
 
             pw.flush();
+
             LpSolve solver = LpSolve.readLp(program.getPath(), LpSolve.NORMAL, null);
             // Do stuff with linear program.
             solver.deleteLp();
@@ -56,6 +58,19 @@ class ILPLowerBound {
 
                 sb.append(" e_").append(i).append("_").append(j).append(" ");
             }
+        }
+
+        return sb.toString();
+    }
+
+    private static String noBranchConstraints(TCPProblem p) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < p.n; i++) {
+            for (int j = 0; j < p.n; j++) {
+                sb.append(" + e_").append(i).append("_").append(j)
+                  .append(" + e_").append(j).append("_").append(i);
+            }
+            sb.append(" <= 2;\n");
         }
 
         return sb.toString();
