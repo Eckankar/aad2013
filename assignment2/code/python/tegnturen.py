@@ -4,7 +4,7 @@ from Graph1 import knuder, d
 import pygame
 from math import ceil, sqrt
 
-tur = [7, 3, 8, 6, 4, 5]
+tur = [8, 7, 2, 0]
 # længde = 0.6
 
 # Skriv turen der skal tegnes og regnes på hér:
