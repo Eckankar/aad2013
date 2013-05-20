@@ -4,7 +4,9 @@ from Graph1 import knuder, d
 import pygame
 from math import ceil, sqrt
 
-tur = [8, 7, 2, 0]
+tur = [8, 7, 5, 6]
+#tur = [4, 5, 3, 2]
+#tur = [1, 3, 5, 7, 6, 4, 2, 0]
 # længde = 0.6
 
 # Skriv turen der skal tegnes og regnes på hér:
@@ -74,8 +76,8 @@ for k in knuder:
     if k[0] > maxX: maxX = k[0]
     if k[1] > maxY: maxY = k[1]
 
-minS = min(minX, minY)
-maxS = max(maxX, maxY)
+minS = min(minX, minY) - D
+maxS = max(maxX, maxY) + D
 dS = maxS-minS
 
 def knude(k): # Flyt knuden over på vores nye koordinatsystem
@@ -119,6 +121,7 @@ for k in range(0, len(knuder)):
 
 # Display the screen
 pygame.display.flip()
+pygame.image.save(window,'graph.png')
 
 # Loop until quit is requested
 stop = False
